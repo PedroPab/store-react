@@ -18,7 +18,7 @@ function CheckoutSideMenu() {
           <XMarkIcon className="h-6 w-6 text-black-500 cursor-pointer" />
         </div>
       </div>
-      <div className="px-6 ">
+      <div className="px-6 overflow-y-auto ">
         {
           cartProducts.map(product => (
             <OrderCard
