@@ -2,7 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 
 
 // eslint-disable-next-line react/prop-types
-function OrderCard({ title, imageUrl, price }) {
+function OrderCard({ title, imageUrl, price, deleteProductCart, id }) {
   return (
     <div className='flex justify-between items-center mb-3'>
       <div className='flex items-center gap-2'>
@@ -14,7 +14,7 @@ function OrderCard({ title, imageUrl, price }) {
       </div>
       <div className='flex items-center gap-2'>
         <p className='text-lg font-medium'>{price}</p>
-        <XMarkIcon className="h-6 w-6 text-black-500 cursor-pointer" />
+        <XMarkIcon onClick={() => { deleteProductCart(id) }} className="h-6 w-6 text-black-500 cursor-pointer" />
       </div>
 
     </div>
