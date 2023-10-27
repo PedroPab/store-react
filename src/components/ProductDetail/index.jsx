@@ -1,17 +1,22 @@
 import './styles.css'
 import { XMarkIcon } from '@heroicons/react/24/solid'
+import { useContext } from "react"
 
-function ProductDetail(props) {
+import { ShoppingCartContext } from "./../../Contex"
+
+
+function ProductDetail() {
+  const contex = useContext(ShoppingCartContext)
+
+
   return (
-    <aside className="product-detail flex flex-col fixed right-0 border border-black rounded-lg bg-white">
+    <aside className={`${contex.isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex flex-col fixed right-0 border border-black rounded-lg bg-white`}>
       <div className='flex justify-between items-center  p-6'>
         <h2 className='font-medium text-xl'>Title Detail</h2>
-        <div>
-          <XMarkIcon className="h-6 w-6 text-black-500" />        </div>
-
-
+        <div onClick={() => contex.closeProductDetail()}>
+          <XMarkIcon className="h-6 w-6 text-black-500" />
+        </div>
       </div>
-
     </aside>
   );
 }
