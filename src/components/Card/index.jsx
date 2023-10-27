@@ -21,9 +21,13 @@ export default function Card({ data }) {
 
   // add product to cart
 
-  const addProductToCart = (product) => {
+  const addProductToCart = (event, product) => {
+    event.stopPropagation()
     agragaAlCarrito()
     contex.setCartProducts([...contex.cartProducts, product])
+    contex.openCheckoutSideMenu()
+    console.log('open checkoutSideMenu');
+
   }
 
   return (
@@ -33,7 +37,7 @@ export default function Card({ data }) {
         <samp className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs  m-2 px-3 py-0.5">{data.category.name}</samp>
         <img className="w-full h-full object-cover rounded-lg" src={data.images[0]} alt={data.description} />
         <button className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 rounded-full m-2 px-1"
-          onClick={() => addProductToCart(data)}
+          onClick={(event) => addProductToCart(event, data)}
         >
           <PlusIcon className="h-6 w-6 text-black-500" />
         </button>

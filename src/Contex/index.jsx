@@ -9,9 +9,14 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // product detail open/close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
-
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
+
+  // product checkout open/close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+  const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+  const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
 
   // prodcut detaild 
   const [productToShow, setProductToShow] = useState({})
@@ -28,6 +33,9 @@ export const ShoppingCartProvider = ({ children }) => {
         isProductDetailOpen,
         openProductDetail,
         closeProductDetail,
+        isCheckoutSideMenuOpen,
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu,
         productToShow,
         setProductToShow,
         cartProducts,
