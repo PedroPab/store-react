@@ -60,7 +60,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               isActive ? activeStyle : 'undefined'
             } >
-            My orden
+            My order
           </NavLink>
         </li>
         <li>
@@ -69,7 +69,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               isActive ? activeStyle : 'undefined'
             } >
-            My ordens
+            My orders
           </NavLink>
         </li>
         <li>
