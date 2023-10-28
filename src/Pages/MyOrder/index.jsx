@@ -14,7 +14,6 @@ function MyOrder() {
   const currentPath = window.location.pathname
   let index = currentPath.substring(currentPath.lastIndexOf(`/`) + 1)
 
-  console.log("🚀 ~ file: index.jsx:17 ~ MyOrder ~ index:", index)
   if (index == `last` || index == `my-order`) index = contex.order?.length - 1
 
   return (

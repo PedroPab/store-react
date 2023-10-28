@@ -22,7 +22,7 @@ function CheckoutSideMenu() {
       date: new Date(),
       products: cartProducts,
       totalProducts: cartProducts.length,
-      totalPrice: totalPrice(cartProducts),
+      totalPrice: `$${totalPrice(cartProducts)}`,
     }
     const orderFinal = contex.order
     orderFinal.push(orderToAdd)
@@ -55,7 +55,7 @@ function CheckoutSideMenu() {
       <div className="px-6 mb-6">
         <p className="flex justify-between items-center mb-2">
           <span className="font-light">Total:</span>
-          <span className="font-medium text-2xl">{totalPrice(cartProducts)}</span>
+          <span className="font-medium text-2xl">${totalPrice(cartProducts)}</span>
         </p>
         <Link to="/my-orders/last">
           <button className="w-full bg-black py-3 text-white rounded-sm" onClick={() => handleCheckout()}>Checkout</button>
