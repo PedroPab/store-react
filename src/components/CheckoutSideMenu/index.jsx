@@ -24,8 +24,9 @@ function CheckoutSideMenu() {
       totalProducts: cartProducts.length,
       totalPrice: totalPrice(cartProducts),
     }
-
-    contex.setOrder([...contex.order, orderToAdd])
+    const orderFinal = contex.order
+    orderFinal.push(orderToAdd)
+    contex.setOrder(orderFinal)
     contex.setCartProducts([])
   }
   return (
