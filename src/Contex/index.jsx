@@ -34,6 +34,9 @@ export const ShoppingCartProvider = ({ children }) => {
   // get products  bt title
   const [searchByTitle, setSearchByTitle] = useState(null)
 
+  // get products  bt category
+  const [searchCategory, setSearchCategory] = useState(null)
+
   useEffect(() => {
     const apiUrl = 'https://api.escuelajs.co/api/v1'
     fetch(`${apiUrl}/products`)
@@ -52,12 +55,50 @@ export const ShoppingCartProvider = ({ children }) => {
       return titleItem.includes(searchTitle)
     })
   }
+  const filteredItemsByCategory = (items, category) => {
+    return items?.filter(item => {
+
+      const categoryItem = item.category.name.toLowerCase()
+      const searchCategory = category.toLowerCase()
+      return categoryItem.includes(searchCategory)
+    })
+  }
+
+  const filterItems = (use, { items, searchByTitle, searchCategory }) => {
+    if (use == `TITLE`) {
+      const filter = filteredItemsByTitle(items, searchByTitle)
+      setFilteredItems(filter)
+    }
+    if (use === `CATEGORY`) {
+      const filter = filteredItemsByCategory(items, searchCategory)
+      setFilteredItems(filter)
+    }
+    if (use === `FULL`) {
+      let filter = filteredItemsByTitle(items, searchByTitle)
+      filter = filteredItemsByCategory(filter, searchCategory)
+      setFilteredItems(filter)
+    }
+
+  }
   useEffect(() => {
-    if (!searchByTitle) return
-    const filter = filteredItemsByTitle(items, searchByTitle)
-    setFilteredItems(filter)
-  }, [searchByTitle, items])
+    if (!searchByTitle && !searchCategory) return
+
+    if (searchByTitle && !searchCategory) {
+      filterItems(`TITLE`, { items, searchByTitle })
+    }
+
+    if (searchCategory && !searchByTitle) {
+      filterItems(`CATEGORY`, { items, searchCategory })
+    }
+
+    if (searchCategory && searchByTitle) {
+      filterItems(`FULL`, { items, searchByTitle, searchCategory })
+    }
+
+  }, [searchByTitle, searchCategory, items])
+
   console.log(`filter:`, filteredItems);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -79,6 +120,8 @@ export const ShoppingCartProvider = ({ children }) => {
         setItems,
         searchByTitle,
         setSearchByTitle,
+        searchCategory,
+        setSearchCategory,
         filteredItems,
       }}>
       {children}

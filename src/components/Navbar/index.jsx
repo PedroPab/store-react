@@ -32,7 +32,7 @@ export default function Navbar() {
         </li>
         <li>
           <NavLink
-            to='/electronics'
+            to='/category/electronics'
             className={({ isActive }) =>
               isActive ? activeStyle : 'undefined'
             } >

@@ -5,12 +5,26 @@ import ProductDetail from './../../components/ProductDetail'
 import { ShoppingCartContext } from "./../../Contex"
 
 function Home() {
-
   const contex = useContext(ShoppingCartContext)
   const items = contex.items
 
+  const currentPath = window.location.pathname
+  const categoryActive = currentPath.split('/')[currentPath.split('/').length - 2]
+  let index = currentPath.substring(currentPath.lastIndexOf(`/`) + 1)
+  if (categoryActive == 'category') {
+    if (index) {
+      //filtramos los productos por al categoria
+      contex.setSearchCategory(index)
+    } else {
+      contex.setSearchCategory(null)
+    }
+  } else {
+    contex.setSearchCategory(null)
+  }
+
+
   const rederView = () => {
-    if (contex.searchByTitle?.length > 0) {
+    if (contex.searchByTitle?.length > 0 || contex.searchCategory) {
       if (contex.filteredItems?.length > 0) {
         return (
           <>
@@ -28,7 +42,6 @@ function Home() {
           </>
         )
       }
-
     } else {
       return (
         <>
