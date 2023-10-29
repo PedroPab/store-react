@@ -83,7 +83,7 @@ export default function Navbar() {
         </li>
         <li className='flex items-center'>
           <ShoppingCartIcon className="h-6 w-6 text-black-500" />
-          <div> {contex.count}</div>
+          <div> {contex.cartProducts.length}</div>
         </li>
 
       </ul>
